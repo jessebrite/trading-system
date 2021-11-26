@@ -6,8 +6,8 @@
         <groupId>com.group22</groupId>
         <artifactId>trading-system</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <artifactId>client-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>client-service</name>
