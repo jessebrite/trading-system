@@ -5,4 +5,4 @@ ARG APP_VERSION="0.0.1-SNAPSHOT"
 ARG JAR_FILE="/target/${APP_NAME}-${APP_VERSION}.jar"
 
 COPY ${JAR_FILE} client-service-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar", "client-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "client-service.jar"]

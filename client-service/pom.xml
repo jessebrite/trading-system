@@ -67,7 +67,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>client-service</finalName>
+<!--        <finalName>client-service</finalName>-->
     </build>
 
 </project>
