@@ -69,6 +69,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>transaction-service</finalName>
     </build>
 
 </project>
