@@ -15,6 +15,7 @@
     <bytecodeTargetLevel>
       <module name="client-service" target="11" />
       <module name="order-service" target="11" />
+      <module name="trading-system" target="11" />
       <module name="transaction-service" target="11" />
     </bytecodeTargetLevel>
   </component>
