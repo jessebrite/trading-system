@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>trading</name>
+    <name>trading-system</name>
     <description>Demo project for Spring Boot</description>
 
     <modules>
