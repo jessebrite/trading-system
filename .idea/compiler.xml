@@ -13,9 +13,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="client-service" target="17" />
-      <module name="order-service" target="17" />
-      <module name="transaction-service" target="17" />
+      <module name="client-service" target="11" />
+      <module name="order-service" target="11" />
+      <module name="transaction-service" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
