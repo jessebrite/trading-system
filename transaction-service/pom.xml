@@ -7,6 +7,7 @@
         <artifactId>trading-system</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <artifactId>transaction-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>transaction-service</name>
