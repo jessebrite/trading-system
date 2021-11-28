@@ -54,6 +54,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile-maven-version}</version>
                 <executions>
                     <execution>
                         <id>default</id>
@@ -65,7 +66,11 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repository>jessebrite/trading-system</repository>
+                    <repositorires>
+                        <repository>jessebrite/client-service</repository>  
+                        <repository>jessebrite/order-service</repository>  
+                        <repository>jessebrite/trading-service</repository>                        
+                    </repositorires>
                     <tag>${project.version}</tag>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
