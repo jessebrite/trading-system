@@ -26,15 +26,12 @@ jobs:
       with:
         java-version: '11'
         distribution: 'adopt'
-        server-id: docker.io
-        server-username: MAVEN_USERNAME
-        server-password: MAVEN_Pssword
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
 
-#        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-#        settings-path: ${{ github.workspace }} # location for the settings.xml file
-
+# changes start from here
     - name: Build and push client-service with Maven
-      uses: mr-smithers-excellent/docker-build-push@v5
+#       uses: mr-smithers-excellent/docker-build-push@v5
       run: mvn -B package dockerfile:push --file client-service/pom.xml
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -42,7 +39,7 @@ jobs:
 
 
     - name: Build and push order-service with Maven
-      uses: mr-smithers-excellent/docker-build-push@v5
+#       uses: mr-smithers-excellent/docker-build-push@v5
       run: mvn -B package dockerfile:push --file order-service/pom.xml
       env:
         MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -50,7 +47,7 @@ jobs:
 
 
     - name: Build and push transaction-service with Maven
-      uses: mr-smithers-excellent/docker-build-push@v5
+#       uses: mr-smithers-excellent/docker-build-push@v5
       run: mvn -B package dockerfile:push --file transaction-service/pom.xml
       env:
         MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
