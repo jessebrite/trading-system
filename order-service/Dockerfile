@@ -1,8 +1,7 @@
 FROM adoptopenjdk/openjdk11:alpine-jre
 
 ARG APP_NAME="order-service"
-ARG APP_VERSION="0.0.1-SNAPSHOT"
-ARG JAR_FILE="/target/${APP_NAME}-${APP_VERSION}.jar"
+ARG JAR_FILE="/target/${APP_NAME}.jar"
 
-COPY ${JAR_FILE} order-service-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java", "-jar", "order-service.jar"]
+COPY ${JAR_FILE} order-service-0.0.1.jar
+ENTRYPOINT ["java", "-jar", "order-service-0.0.1.jar"]
