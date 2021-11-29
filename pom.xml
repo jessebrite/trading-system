@@ -50,11 +50,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+<!--                <version>${project.parent.version}</version>-->
             </plugin>
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>${dockerfile-maven-version}</version>
+<!--                <version>1.4.13</version>-->
                 <executions>
                     <execution>
                         <id>default</id>
@@ -66,11 +67,11 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <repositorires>
-                        <repository>jessebrite/client-service</repository>  
-                        <repository>jessebrite/order-service</repository>  
-                        <repository>jessebrite/trading-service</repository>                        
-                    </repositorires>
+<!--                    <repositories>-->
+                        <repository>jessebrite/client-service</repository>
+<!--                        <repository>jessebrite/order-service</repository>-->
+<!--                        <repository>jessebrite/transaction-service</repository>-->
+<!--                    </repositories>-->
                     <tag>${project.version}</tag>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
