@@ -31,7 +31,7 @@ jobs:
 
 # changes start from here
     - name: Build and push client-service with Maven
-      uses: mr-smithers-excellent/docker-build-push@v5
+#       uses: mr-smithers-excellent/docker-build-push@v5
       run: mvn -B package dockerfile:push --file client-service/pom.xml
       env:
           MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -39,7 +39,7 @@ jobs:
 
 
     - name: Build and push order-service with Maven
-      uses: mr-smithers-excellent/docker-build-push@v5
+#       uses: mr-smithers-excellent/docker-build-push@v5
       run: mvn -B package dockerfile:push --file order-service/pom.xml
       env:
         MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -47,7 +47,7 @@ jobs:
 
 
     - name: Build and push transaction-service with Maven
-      uses: mr-smithers-excellent/docker-build-push@v5
+#       uses: mr-smithers-excellent/docker-build-push@v5
       run: mvn -B package dockerfile:push --file transaction-service/pom.xml
       env:
         MAVEN_USERNAME: ${{ secrets.DOCKER_USERNAME }}
