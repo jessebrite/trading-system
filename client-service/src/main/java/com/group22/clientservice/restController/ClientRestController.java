@@ -26,6 +26,7 @@ public class ClientRestController {
      */
     @GetMapping
     public ResponseEntity<List<Client>> getAllClients() {
+
         try {
             List<Client> allClients = clientService.findAllClients();
             if (allClients.isEmpty()) {
