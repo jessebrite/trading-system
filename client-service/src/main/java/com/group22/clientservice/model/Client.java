@@ -49,7 +49,7 @@ public class Client {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "portfolio_ID", referencedColumnName = "id")
     private Portfolio portfolio;
 
@@ -64,5 +64,5 @@ public class Client {
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    ZonedDateTime createdAt;
+    private ZonedDateTime createdAt;
 }

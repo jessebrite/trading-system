@@ -1,6 +1,7 @@
 package com.group22.clientservice.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -18,6 +19,7 @@ public class Portfolio {
     @Column(name = "name")
     private String name;
 
+    @CreationTimestamp
     @Column(name = "created_at")
     private ZonedDateTime createdAt;
 

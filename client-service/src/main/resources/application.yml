@@ -6,16 +6,16 @@ server:
 spring:
   flyway:
     enabled: true
-    schemas:
-      - tlc_trading_engine_db
+    schemas: tlc_trading_engine_db
     installed-by: Group 22
   datasource:
     username: postgres
-    password: postgres
+    password: password
     url: jdbc:postgresql://localhost:5432/tlc_trading_engine_db
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties.hibernate.format_sql: true
     hibernate:
       ddl-auto: update
     open-in-view: false
-    show-sql: false
+    show-sql: true

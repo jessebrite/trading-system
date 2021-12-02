@@ -8,8 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="transaction-service" />
-        <module name="client-service" />
         <module name="order-service" />
+        <module name="client-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,7 +23,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="client-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
-      <module name="trading-system" options="" />
+      <module name="trading-system" options="-parameters" />
       <module name="transaction-service" options="-parameters" />
     </option>
   </component>
