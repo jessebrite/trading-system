@@ -3,6 +3,7 @@
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
     <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -29,6 +30,8 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="8bddd27b-3d29-46e1-83fd-638b0bc8030f">
       <console name="test2" type="STANDARD" schema="" session="Main" />
+    <connection id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a">
+      <console name="trading-engine" type="STANDARD" schema="public" session="Main"><![CDATA[select * from clients;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -36,6 +39,10 @@
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="8bddd27b-3d29-46e1-83fd-638b0bc8030f" />
+    <connection id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a" dataset="public.clients" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -61,6 +68,9 @@
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ParserDiagnosticsManager">
+    <diagnostics-history />
+  </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
     <recently-used-interfaces />
   </component>
@@ -73,6 +83,13 @@
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
           <database-version value="14.0" />
+      <connection id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a" active="true">
+        <database>
+          <name value="Connection" />
+          <description value="trading-engine" />
+          <database-type value="POSTGRES" />
+          <config-type value="BASIC" />
+          <database-version value="14.1" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
@@ -83,6 +100,7 @@
           <type value="USER_PASSWORD" />
           <user value="postgres" />
           <deprecated-pwd value="cG9zdGdyZXM=" />
+          <deprecated-pwd value="cGFzc3dvcmQ=" />
         </database>
         <properties>
           <auto-commit value="false" />

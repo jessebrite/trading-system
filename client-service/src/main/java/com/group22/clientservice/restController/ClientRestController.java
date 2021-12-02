@@ -67,12 +67,7 @@ public class ClientRestController {
      */
     @PostMapping
     public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) {
-        try {
-            Client clientData = clientService.save(client);
-            return new ResponseEntity<>(clientData, HttpStatus.CREATED);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+            return clientService.createNewClient(client);
     }
 
     /**
@@ -83,20 +78,8 @@ public class ClientRestController {
      * @return
      */
     @PutMapping("/{id}")
-    public ResponseEntity<Client> updateClient(@PathVariable UUID id, Client client) {
-        try {
-            Optional<Client> clientData = clientService.findClientById(id);
-            if (clientData.isEmpty()) {
-                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-            }
-            Client _client = clientData.get();
-            _client.setFirstName(client.getFirstName());
-            _client.setLastName(client.getLastName());
-            var updatedClient = clientService.save(_client);
-            return new ResponseEntity<>(updatedClient, HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<Client> updateClient(@PathVariable UUID id, @RequestBody Client client) {
+        return clientService.update(id, client);
     }
 
     /**
