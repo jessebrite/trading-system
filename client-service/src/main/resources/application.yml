@@ -19,3 +19,6 @@ spring:
       ddl-auto: update
     open-in-view: false
     show-sql: false
+    properties:
+      hibernate:
+        '[default_schema]': tlc_trading_engine_db

@@ -17,12 +17,18 @@
     </properties>
 
     <dependencies>
-<!--    where service-specific dependencies would reside-->
+        <!--    where service-specific dependencies would reside-->
         <!--    jwt for frontend-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
+        </dependency>
+
+        <!--        Flyway to handle data migrations-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
         </dependency>
 
     </dependencies>
