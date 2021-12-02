@@ -1,2 +1,17 @@
 server:
   port: 8082
+
+spring:
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/tlc_trading_engine_db
+    jpa:
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+      hibernate:
+        ddl-auto: update
+      open-in-view: false
+      show-sql: false
+      properties:
+        hibernate:
+          '[default_schema]': tlc_trading_engine_db
