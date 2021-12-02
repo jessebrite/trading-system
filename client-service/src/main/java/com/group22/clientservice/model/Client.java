@@ -1,6 +1,7 @@
 package com.group22.clientservice.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -48,7 +49,7 @@ public class Client {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "portfolio_ID", referencedColumnName = "id")
     private Portfolio portfolio;
 
@@ -60,6 +61,7 @@ public class Client {
 //    @JoinColumn(name = "order_id", referencedColumnName = "id")
 //    private List<Order> orders;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
-    ZonedDateTime createdAt;
+    private ZonedDateTime createdAt;
 }
