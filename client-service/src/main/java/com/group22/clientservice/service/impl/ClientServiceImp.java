@@ -54,6 +54,11 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
+    public Optional<Client> findClientByUsername(String username) {
+        return clientRepository.findByUsername(username);
+    }
+
+    @Override
     public List<Client> findAllClients() {
         return clientRepository.findAll();
     }
