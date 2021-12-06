@@ -19,6 +19,8 @@
     <dependencies>
         <!--    where service-specific dependencies would reside-->
         <!--    jwt for frontend-->
+
+        <!--    jwt for frontend-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
@@ -35,12 +37,12 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
         </dependency>
+
+<!--        Spring security-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>5.4.2</version>
         </dependency>
-
     </dependencies>
 
     <build>

@@ -1,13 +1,13 @@
 <component name="libraryTable">
-  <library name="Maven: org.springframework.boot:spring-boot-starter-validation:2.6.0">
+  <library name="Maven: org.jboss:jandex:2.2.3.Final">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-validation/2.6.0/spring-boot-starter-validation-2.6.0.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/jandex/2.2.3.Final/jandex-2.2.3.Final.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-validation/2.6.0/spring-boot-starter-validation-2.6.0-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/jandex/2.2.3.Final/jandex-2.2.3.Final-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-validation/2.6.0/spring-boot-starter-validation-2.6.0-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/jboss/jandex/2.2.3.Final/jandex-2.2.3.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
