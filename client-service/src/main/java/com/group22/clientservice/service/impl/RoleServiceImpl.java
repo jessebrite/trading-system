@@ -5,9 +5,11 @@ import com.group22.clientservice.model.Role;
 import com.group22.clientservice.repository.RoleRepository;
 import com.group22.clientservice.service.RoleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 @RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
 	private final RoleRepository roleRepository;
