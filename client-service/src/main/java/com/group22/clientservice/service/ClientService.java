@@ -18,6 +18,10 @@ public interface ClientService {
 
 	List<Client> findAllClients();
 
+	Boolean existsByUsername(String username);
+
+	Boolean existsByEmail(String email);
+
 	void deleteClientById(UUID id);
 
 	void deleteAllClients();
