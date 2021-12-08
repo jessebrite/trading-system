@@ -1,14 +1,17 @@
 package com.group22.clientservice.payload.request;
 
 
-import lombok.RequiredArgsConstructor;
+import com.group22.clientservice.model.Account;
+import com.group22.clientservice.model.Portfolio;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.ZonedDateTime;
 
-@RequiredArgsConstructor
+@Data
 public class RegisterRequest {
 	@NotBlank(message = "First name is required")
 	@Size(max = 25, message = "First name should not exceed 25 characters")
@@ -31,6 +34,12 @@ public class RegisterRequest {
 	@Size(min = 8, message = "Password must be at least 8 characters long")
 	private final String password;
 
+	private final Account account;
+
+	private final Portfolio portfolio;
+
 	@Value("${EnumType.STRING:ROLE_USER}")
 	private final String role;
+
+	private final ZonedDateTime createdAt;
 }
