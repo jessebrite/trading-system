@@ -1,5 +1,6 @@
 package com.group22.clientservice.restController;
 
+import com.group22.clientservice.dto.CustomUserDetail;
 import com.group22.clientservice.model.Client;
 import com.group22.clientservice.model.enums.Role;
 import com.group22.clientservice.payload.request.LoginRequest;
@@ -14,6 +15,7 @@ import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -39,13 +42,13 @@ public class AuthRestController {
     private final JwtUtils jwtUtils;
 
     @PostMapping("/login")
-    public Object authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
                                    BindingResult result) {
         if (result.hasErrors()) {
             List<String> errors = result.getAllErrors().stream()
                     .map(DefaultMessageSourceResolvable::getDefaultMessage)
                     .collect(Collectors.toList());
-            return new ResponseEntity<>(errors, HttpStatus.OK);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.toString());
         }
 
         try {
@@ -55,19 +58,17 @@ public class AuthRestController {
             );
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            String jwt = jwtUtils.generateJwtToken(authentication);
+            Client client = clientService.findClientByUsername(loginRequest.getUsername()).get();
+            String jwt = jwtUtils.generateJwtToken(client);
 
-            UserDetailsImplementation userDetails =
-                    (UserDetailsImplementation) authentication.getPrincipal();
-
-            var role = userDetails.getAuthorities().toString();
-
-            return ResponseEntity.ok(new JwtResponse(
-                    jwt, userDetails.getId(), userDetails.getFirstName(), userDetails.getLastName(),
-                    userDetails.getUsername(), userDetails.getEmail(), role));
-        } catch (AuthenticationException authException) {
+            return new ResponseEntity<>(jwt, HttpStatus.OK);
+        } catch (AuthenticationException e) {
             SecurityContextHolder.getContext().setAuthentication(null);
-            return new MessageResponse("Wrong username/password combination");
+            //return new MessageResponse("Wrong username/password combination");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong username/password combination");
+        } catch (Exception e) {
+            //return new MessageResponse("Wrong username/password combination");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong username/password combination");
         }
     }
 
@@ -80,14 +81,13 @@ public class AuthRestController {
                     .collect(Collectors.toList());
             return new ResponseEntity<>(errors, HttpStatus.OK);
         }
+
         if (clientService.existsByUsername(register.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Username already exists!"));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Username already exists!");
         }
+
         if (clientService.existsByEmail(register.getEmail())) {
-            return ResponseEntity.badRequest()
-                    .body(new MessageResponse("Email is already in use!"));
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Email is already in use!");
         }
 
         Client user = new Client(register.getFirstName(), register.getLastName(), register.getUsername(),
@@ -111,7 +111,6 @@ public class AuthRestController {
 //                role = Role.ROLE_USER;
 //        }
         clientService.createNewClient(user);
-
-        return ResponseEntity.ok(new MessageResponse("You have registered successfully!"));
+        return new ResponseEntity<>("You have registered successfully!", HttpStatus.OK);
     }
 }

@@ -1,9 +1,7 @@
 package com.group22.clientservice.model;
 
 import com.group22.clientservice.model.enums.Role;
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -19,7 +17,8 @@ import java.util.UUID;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email"),
         })
-@Data
+@Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Client {
     @Id
@@ -50,12 +49,12 @@ public class Client {
     @Size(max = 120)
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
 //    @NotNull
     private Account account;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "portfolio_ID", referencedColumnName = "id")
 //    @NotNull
     private Portfolio portfolio;
