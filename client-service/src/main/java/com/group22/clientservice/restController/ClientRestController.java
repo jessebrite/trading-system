@@ -3,7 +3,6 @@ package com.group22.clientservice.restController;
 import com.group22.clientservice.model.Client;
 import com.group22.clientservice.service.ClientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +19,10 @@ public class ClientRestController {
     public final ClientService clientService;
 
     /**
-     *
      * @return
      */
-    public ResponseEntity<?> getAllOrders() {
+    @GetMapping("/clients/{id}/orders")
+    public ResponseEntity<?> getAllOrders(@PathVariable UUID id) {
         return new ResponseEntity<>(clientService.getClass(), HttpStatus.OK);
     }
 
@@ -32,8 +31,8 @@ public class ClientRestController {
      *
      * @return
      */
-    @GetMapping("/clients/{id}/orders")
-    public ResponseEntity<List<Client>> getAllClients(@PathVariable UUID id) {
+    @GetMapping
+    public ResponseEntity<List<Client>> getAllClients() {
 
         try {
             List<Client> allClients = clientService.findAllClients();
@@ -41,6 +40,7 @@ public class ClientRestController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
+            allClients.forEach(client -> client.setPassword(""));
             return new ResponseEntity<>(allClients, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -76,7 +76,7 @@ public class ClientRestController {
      */
     @PostMapping
     public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) {
-            return clientService.createNewClient(client);
+        return clientService.createNewClient(client);
     }
 
     /**
