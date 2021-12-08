@@ -10,12 +10,12 @@ spring:
     installed-by: Group 22
   datasource:
     username: postgres
-    password: postgres
+    password: password
     url: jdbc:postgresql://localhost:5432/tlc_trading_engine_db
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     open-in-view: false
     show-sql: false
     properties:

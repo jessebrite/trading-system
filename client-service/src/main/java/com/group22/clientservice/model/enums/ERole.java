@@ -1,4 +1,4 @@
-package com.group22.clientservice.model;
+package com.group22.clientservice.model.enums;
 
 public enum ERole {
     ROLE_USER,

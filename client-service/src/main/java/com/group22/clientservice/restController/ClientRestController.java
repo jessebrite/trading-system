@@ -3,6 +3,7 @@ package com.group22.clientservice.restController;
 import com.group22.clientservice.model.Client;
 import com.group22.clientservice.service.ClientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class ClientRestController {
-
+    @Autowired
     public final ClientService clientService;
 
     /**
@@ -32,6 +33,7 @@ public class ClientRestController {
             if (allClients.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+
             return new ResponseEntity<>(allClients, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -81,6 +83,9 @@ public class ClientRestController {
     public ResponseEntity<Client> updateClient(@PathVariable UUID id, @RequestBody Client client) {
         return clientService.update(id, client);
     }
+
+    @PutMapping("/{id}/portfolios")
+
 
     /**
      * DELETE: /api/v1/clients/{id}

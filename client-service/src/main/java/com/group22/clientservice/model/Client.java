@@ -1,10 +1,12 @@
 package com.group22.clientservice.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.ZonedDateTime;
 import java.util.UUID;
@@ -45,12 +47,14 @@ public class Client {
     @Size(max = 120)
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
+//    @NotNull
     private Account account;
 
-    @OneToOne (fetch = FetchType.LAZY)
+    @OneToOne (fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "portfolio_ID", referencedColumnName = "id")
+//    @NotNull
     private Portfolio portfolio;
 
 

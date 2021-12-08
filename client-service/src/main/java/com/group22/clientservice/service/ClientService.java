@@ -21,5 +21,4 @@ public interface ClientService {
 	void deleteClientById(UUID id);
 
 	void deleteAllClients();
-
 }
