@@ -17,16 +17,23 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class ClientRestController {
-    @Autowired
     public final ClientService clientService;
 
     /**
-     * GET: /api/v1/clients
      *
      * @return
      */
-    @GetMapping
-    public ResponseEntity<List<Client>> getAllClients() {
+    public ResponseEntity<?> getAllOrders() {
+        return new ResponseEntity<>(clientService.getClass(), HttpStatus.OK);
+    }
+
+    /**
+     * GET: /api/v1/clients/{id}/orders
+     *
+     * @return
+     */
+    @GetMapping("/clients/{id}/orders")
+    public ResponseEntity<List<Client>> getAllClients(@PathVariable UUID id) {
 
         try {
             List<Client> allClients = clientService.findAllClients();
@@ -100,21 +107,6 @@ public class ClientRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    /**
-     * DELETE: /api/v1/clients
-     *
-     * @return
-     */
-    @DeleteMapping
-    public ResponseEntity<List<Client>> deleteAllClients() {
-        try {
-            clientService.deleteAllClients();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

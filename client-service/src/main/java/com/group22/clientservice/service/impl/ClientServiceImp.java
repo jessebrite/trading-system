@@ -2,22 +2,17 @@ package com.group22.clientservice.service.impl;
 
 import com.group22.clientservice.model.Account;
 import com.group22.clientservice.model.Client;
-import com.group22.clientservice.model.Portfolio;
-import com.group22.clientservice.repository.AccountRepository;
 import com.group22.clientservice.repository.ClientRepository;
-import com.group22.clientservice.repository.PortfolioRepository;
 import com.group22.clientservice.service.AccountService;
 import com.group22.clientservice.service.ClientService;
 import com.group22.clientservice.service.PortfolioService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.math.BigInteger;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,14 +20,26 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImp implements ClientService {
-    @Autowired
     private final ClientRepository clientRepository;
-
-    @Autowired
     private final AccountService accountService;
-
-    @Autowired
     private final PortfolioService portfolioService;
+    private RestTemplate restTemplate;
+
+    @Value("${abj.app.order-url}")
+    private String ORDER_URL;
+
+    @Override
+    public ResponseEntity<?> fetchOrder() {
+//        restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+        headers.set("X-COM-PERSIST", "NO");
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        String getOrder = ORDER_URL + "/orders";
+
+        return restTemplate.exchange(getOrder, HttpMethod.GET, entity, Client.class);
+    }
 
     @Override
     public ResponseEntity<Client> createNewClient(Client client) {
@@ -41,9 +48,6 @@ public class ClientServiceImp implements ClientService {
         if (clientInDb.isPresent()) {
             return new ResponseEntity<>(null, HttpStatus.CONFLICT);
         }
-
-
-
 
         var newPortfolio = portfolioService.createNewPortfolio();
         var newAccount = accountService.createNewAccount(new Account(new BigInteger("10000")));
@@ -102,8 +106,4 @@ public class ClientServiceImp implements ClientService {
         clientRepository.deleteById(id);
     }
 
-    @Override
-    public void deleteAllClients() {
-        clientRepository.deleteAll();
-    }
 }

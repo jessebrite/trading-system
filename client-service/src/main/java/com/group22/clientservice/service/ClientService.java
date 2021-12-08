@@ -8,6 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ClientService {
+	ResponseEntity<?> fetchOrder();
+
 	ResponseEntity<Client> createNewClient(Client client);
 
 	ResponseEntity<Client> update(UUID id, Client client);
@@ -23,6 +25,4 @@ public interface ClientService {
 	Boolean existsByEmail(String email);
 
 	void deleteClientById(UUID id);
-
-	void deleteAllClients();
 }
