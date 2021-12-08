@@ -1,9 +1,11 @@
 package com.group22.clientservice.model;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.math.BigInteger;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -16,6 +18,12 @@ public class Account {
 
     private BigInteger balance;
 
-    @Column(name = "created_at", nullable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt;
+
+    public Account(BigInteger balance) {
+        this.balance = balance;
+        this.createdAt = ZonedDateTime.now(ZoneId.of("GMT"));
+    }
 }

@@ -1,5 +1,6 @@
 package com.group22.clientservice.model;
 
+import com.group22.clientservice.model.enums.ERole;
 import lombok.Data;
 
 import javax.persistence.*;
