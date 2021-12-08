@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.math.BigInteger;
 import java.time.ZoneId;
@@ -25,17 +26,19 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImp implements ClientService {
-    @Autowired
     private final ClientRepository clientRepository;
 
-    @Autowired
     private final AccountService accountService;
 
-    @Autowired
     private final PortfolioService portfolioService;
+
+//    private final RestTemplate restTemplate;
+
+//    private string OPRDER_URL = "l"
 
     @Override
     public ResponseEntity<Client> createNewClient(Client client) {
+//        restTemplate.execute()
         var clientInDb = clientRepository.findByEmail(client.getEmail());
 
         if (clientInDb.isPresent()) {

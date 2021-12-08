@@ -64,7 +64,7 @@ public class Client {
 
 //    @OneToMany(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "order_id", referencedColumnName = "id")
-//    private List<Order> orders;
+////    private List<Order> orders;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

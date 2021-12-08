@@ -3,6 +3,7 @@ package com.group22.orderservice.controller;
 
 import com.group22.orderservice.model.Order;
 import com.group22.orderservice.service.OrderService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -27,8 +28,8 @@ public class OrderController {
 
 
     @PostMapping
-    public void createOrder(@RequestBody Order order){
-        orderService.addOrder(order);
+    public ResponseEntity<Order> createOrder(@RequestBody Order order){
+        return orderService.addOrder(order);
     }
 
 
