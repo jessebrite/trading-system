@@ -22,4 +22,5 @@ spring:
     properties:
       hibernate:
         '[default_schema]': tlc_trading_engine_db
-    show-sql: true
+
+

@@ -19,4 +19,5 @@ public class Order {
     private Side side;
     private int quantity;
     private double price;
+
 }

@@ -21,28 +21,27 @@ public class OrderService {
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
-    public List<Order> getOrders(){
+
+    public List<Order> getOrders() {
         return orderRepository.findAll();
     }
 
 
-
-    public void addOrder(Order order){
-//        Optional<Order> byId = orderRepository
-//                .findById(order.getId());
-//        if(byId.isPresent()){
-//            throw new IllegalStateException("can't use this order id");
-//        }
+    public void addOrder(Order order) {
+        Optional<Order> byId = orderRepository
+                .findById(order.getId());
+        if (byId.isPresent()) {
+            throw new IllegalStateException("can't use this order id");
+        }
         orderRepository.save(order);
         System.out.println(order); // just checking
     }
 
 
-
     public void deleteOrder(UUID id) {
         orderRepository.findById(id);
         boolean b = orderRepository.existsById(id);
-        if(!b) {
+        if (!b) {
             throw new IllegalStateException("order with id" + id + "does not exists");
         }
         orderRepository.deleteById(id);
@@ -53,15 +52,15 @@ public class OrderService {
     public void updateOrder(UUID id, double price, int quantity) {
         orderRepository.
                 findById(id).
-                orElseThrow(()-> new IllegalStateException("order with id" + id + "does not exist"));
-        if (quantity != 0 && quantity > 0 && !Objects.equals(order.getQuantity(), quantity)){
+                orElseThrow(() -> new IllegalStateException("order with id" + id + "does not exist"));
+        if (quantity != 0 && quantity > 0 && !Objects.equals(order.getQuantity(), quantity)) {
             order.setQuantity(quantity);
         }
 
 
-        if (price != 0 && price > 0 && !Objects.equals(order.getPrice(),price)){
+        if (price != 0 && price > 0 && !Objects.equals(order.getPrice(), price)) {
             Optional<Order> orderById = orderRepository.findOrderById(id);
-            if(orderById.isPresent()){
+            if (orderById.isPresent()) {
                 throw new IllegalStateException("id already exit");
             }
             order.setPrice(price);
@@ -76,7 +75,7 @@ public class OrderService {
                 .orElseThrow(() ->
                         new IllegalStateException
                                 ("order with this id is not found"));
-       return order;
+        return order;
     }
 
 }
