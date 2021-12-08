@@ -17,12 +17,8 @@
     </properties>
 
     <dependencies>
-<!--    where service-specific dependencies would reside-->
-        <!--    Spring Security-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        <!--    where service-specific dependencies would reside-->
+        <!--    jwt for frontend-->
 
         <!--    jwt for frontend-->
         <dependency>
@@ -31,6 +27,22 @@
             <version>0.9.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+        </dependency>
+
+        <!--        Flyway to handle data migrations-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
+<!--        Spring security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

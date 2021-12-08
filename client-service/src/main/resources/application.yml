@@ -10,12 +10,20 @@ spring:
     installed-by: Group 22
   datasource:
     username: postgres
-    password: password
+    password: postgres
     url: jdbc:postgresql://localhost:5432/tlc_trading_engine_db
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    properties.hibernate.format_sql: true
     hibernate:
       ddl-auto: update
     open-in-view: false
-    show-sql: true
+    show-sql: false
+    properties:
+      format_sql: true
+      hibernate:
+        '[default_schema]': tlc_trading_engine_db
+
+abj:
+  app:
+    jwtSecret: abjSecretKey
+    jwtExpirationMs: 86400000

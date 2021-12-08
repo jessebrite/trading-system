@@ -54,8 +54,23 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
+    public Optional<Client> findClientByUsername(String username) {
+        return clientRepository.findByUsername(username);
+    }
+
+    @Override
     public List<Client> findAllClients() {
         return clientRepository.findAll();
+    }
+
+    @Override
+    public Boolean existsByUsername(String username) {
+        return clientRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return clientRepository.existsByEmail(email);
     }
 
     @Override

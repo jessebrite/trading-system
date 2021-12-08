@@ -15,9 +15,10 @@
         <java.version>11</java.version>
     </properties>
 
-    <!--    <dependencies>        -->
-    <!--    where service-specific dependencies would reside-->
-    <!--    </dependencies>-->
+        <dependencies>
+<!--        where service-specific dependencies would reside-->
+
+        </dependencies>
 
     <build>
         <plugins>
