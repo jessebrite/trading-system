@@ -1,6 +1,7 @@
 package com.group22.clientservice.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,7 +11,9 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 
 @Entity
+@Table(name = "accounts")
 @Data
+@NoArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

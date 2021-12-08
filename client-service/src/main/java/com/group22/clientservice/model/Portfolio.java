@@ -30,8 +30,7 @@ public class Portfolio {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "portfolio")
     private List<Products> products;
 
     public Portfolio() {
