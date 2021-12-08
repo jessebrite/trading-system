@@ -1,5 +1,6 @@
 package com.group22.clientservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.group22.clientservice.model.enums.Role;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -58,11 +59,6 @@ public class Client {
     @JoinColumn(name = "portfolio_ID", referencedColumnName = "id")
 //    @NotNull
     private Portfolio portfolio;
-
-
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "role_id", referencedColumnName = "id")
-//    private Role role;
 
     @Enumerated(EnumType.STRING)
     private Role role;
