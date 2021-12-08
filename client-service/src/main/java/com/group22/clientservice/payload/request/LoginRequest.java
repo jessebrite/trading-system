@@ -1,14 +1,14 @@
 package com.group22.clientservice.payload.request;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
-@RequiredArgsConstructor
+@Data
 public class LoginRequest {
 	@NotBlank(message = "Username is required")
 	private final String username;
 
 	@NotBlank(message = "Password is required")
-	private final String lastName;
+	private final String password;
 }

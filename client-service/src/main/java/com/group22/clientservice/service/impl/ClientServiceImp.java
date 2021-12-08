@@ -88,6 +88,16 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
+    public Boolean existsByUsername(String username) {
+        return clientRepository.existsByUsername(username);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return clientRepository.existsByEmail(email);
+    }
+
+    @Override
     public void deleteClientById(UUID id) {
         clientRepository.deleteById(id);
     }
