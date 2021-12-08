@@ -33,12 +33,12 @@ public class UserDetailsImplementation implements UserDetails {
     @JsonIgnore
     private final String password;
 
-    private final Collection<? extends GrantedAuthority> authorities;
+    private final List<GrantedAuthority> authorities;
 
     public static UserDetailsImplementation build(Client client) {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        var client1 = clientService.findClientByUsername(client.getUsername());
-        authorities.add(new SimpleGrantedAuthority(client1.orElseThrow().getRole().name()));
+//        var client1 = clientService.findClientByUsername(client.getUsername());
+        authorities.add(new SimpleGrantedAuthority(client.getRole().name()));
 //				().getRole().getName().name()));
 
         return new UserDetailsImplementation(

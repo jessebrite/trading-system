@@ -43,11 +43,11 @@ public class ClientServiceImp implements ClientService {
 
     @Override
     public ResponseEntity<Client> createNewClient(Client client) {
-        var clientInDb = clientRepository.findByEmail(client.getEmail());
-
-        if (clientInDb.isPresent()) {
-            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
-        }
+//        var clientInDb = clientRepository.findByEmail(client.getEmail());
+//
+//        if (clientInDb.isPresent()) {
+//            return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+//        }
 
         var newPortfolio = portfolioService.createNewPortfolio();
         var newAccount = accountService.createNewAccount(new Account(new BigInteger("10000")));
