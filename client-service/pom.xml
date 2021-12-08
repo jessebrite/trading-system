@@ -18,6 +18,12 @@
 
     <dependencies>
 <!--    where service-specific dependencies would reside-->
+        <!--    Spring Security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--    jwt for frontend-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
