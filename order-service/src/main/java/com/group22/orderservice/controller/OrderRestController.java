@@ -1,12 +1,11 @@
 package com.group22.orderservice.controller;
 
 
+import antlr.collections.List;
 import com.group22.orderservice.model.Order;
 import com.group22.orderservice.service.OrderService;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -20,10 +19,10 @@ public class OrderRestController {
     }
 
 
-    @GetMapping
-    public List<Order> getOrders() {
-        return orderService.getOrders();
-    }
+//    @GetMapping
+//    public List<Order> getOrders() {
+//        return orderService.getOrders();
+//    }
 
 
     @PostMapping

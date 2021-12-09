@@ -1,12 +1,12 @@
 package com.group22.orderservice.service;
 
+import antlr.collections.List;
 import com.group22.orderservice.model.Order;
 import com.group22.orderservice.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,18 +21,14 @@ public class OrderService {
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
     }
-    public List<Order> getOrders(){
-        return orderRepository.findAll();
-    }
+
+//    public List<Order> getOrders(){
+//        return orderRepository.findAll();
+//    }
 
 
 
     public void addOrder(Order order){
-//        Optional<Order> byId = orderRepository
-//                .findById(order.getId());
-//        if(byId.isPresent()){
-//            throw new IllegalStateException("can't use this order id");
-//        }
         orderRepository.save(order);
         System.out.println(order); // just checking
     }
@@ -78,5 +74,6 @@ public class OrderService {
                                 ("order with this id is not found"));
        return order;
     }
+
 
 }
