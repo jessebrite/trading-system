@@ -1,7 +1,13 @@
 CREATE TABLE IF NOT EXISTS portfolio
 (
-    id          uuid PRIMARY KEY NOT NULL,
-    created_at  TIMESTAMP
+    id         uuid PRIMARY KEY NOT NULL,
+    status     VARCHAR(20),
+    created_at TIMESTAMP,
+    product_id uuid,
+    CONSTRAINT fk_item_product
+        FOREIGN KEY (product_id)
+            REFERENCES products (id)
+--             ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS products
@@ -10,12 +16,7 @@ CREATE TABLE IF NOT EXISTS products
     name       VARCHAR(25),
     ticker     VARCHAR(10),
     quantity   INT,
-    created_at TIMESTAMP        NOT NULL,
-        portfolio_id uuid             NOT NULL,
-    CONSTRAINT fk_item_portfolio
-        FOREIGN KEY (portfolio_id)
-            REFERENCES portfolio (id)
---             ON DELETE NO ACTION ON UPDATE NO ACTION
+    created_at TIMESTAMP        NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS accounts
@@ -27,9 +28,9 @@ CREATE TABLE IF NOT EXISTS accounts
 
 CREATE TABLE IF NOT EXISTS transactions
 (
-    id uuid PRIMARY KEY NOT NULL,
-    status         VARCHAR(3),
-    created_at     TIMESTAMP        NOT NULL
+    id         uuid PRIMARY KEY NOT NULL,
+    status     VARCHAR(3),
+    created_at TIMESTAMP        NOT NULL
 
 );
 
@@ -56,7 +57,7 @@ CREATE TABLE IF NOT EXISTS clients
     username     VARCHAR(20) UNIQUE,
     email        VARCHAR(50) UNIQUE,
     password     VARCHAR(100),
-    role VARCHAR(20),
+    role         VARCHAR(20),
     created_at   TIMESTAMP        NOT NULL,
     portfolio_id uuid             NOT NULL,
     CONSTRAINT fk_client_portfolio

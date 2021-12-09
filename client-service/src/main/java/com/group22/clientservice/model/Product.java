@@ -9,7 +9,7 @@ import java.util.UUID;
 @Table(name = "products")
 @Entity
 @Data
-public class Products {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -17,7 +17,6 @@ public class Products {
     private String name;
     private String ticker;
     private String quantity;
-
 //    @ManyToOne
 //    @JoinColumn(name = "portfolio_id")
 //    private Portfolio portfolio;
