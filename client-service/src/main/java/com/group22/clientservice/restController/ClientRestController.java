@@ -3,7 +3,6 @@ package com.group22.clientservice.restController;
 import com.group22.clientservice.model.Client;
 import com.group22.clientservice.service.ClientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +16,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class ClientRestController {
-    @Autowired
     public final ClientService clientService;
 
     /**
-     * GET: /api/v1/clients
+     * @return
+     */
+    @GetMapping("/clients/{id}/orders")
+    public ResponseEntity<?> getAllOrders(@PathVariable UUID id) {
+        return new ResponseEntity<>(clientService.getClass(), HttpStatus.OK);
+    }
+
+    /**
+     * GET: /api/v1/clients/{id}/orders
      *
      * @return
      */
@@ -34,6 +40,7 @@ public class ClientRestController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
 
+            allClients.forEach(client -> client.setPassword(""));
             return new ResponseEntity<>(allClients, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -69,7 +76,7 @@ public class ClientRestController {
      */
     @PostMapping
     public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) {
-            return clientService.createNewClient(client);
+        return clientService.createNewClient(client);
     }
 
     /**
@@ -100,21 +107,6 @@ public class ClientRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    /**
-     * DELETE: /api/v1/clients
-     *
-     * @return
-     */
-    @DeleteMapping
-    public ResponseEntity<List<Client>> deleteAllClients() {
-        try {
-            clientService.deleteAllClients();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -30,8 +31,7 @@ public class Portfolio {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Products> products;
 
     public Portfolio() {

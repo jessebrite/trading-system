@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/orders")
-public class OrderController {
+@RequestMapping("/orders")
+public class OrderRestController {
 
     private final OrderService orderService;
 
-    public OrderController(OrderService orderService) {
+    public OrderRestController(OrderService orderService) {
         this.orderService = orderService;
     }
 

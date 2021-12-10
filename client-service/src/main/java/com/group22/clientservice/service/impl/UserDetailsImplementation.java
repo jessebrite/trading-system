@@ -3,12 +3,15 @@ package com.group22.clientservice.service.impl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.group22.clientservice.model.Client;
+import com.group22.clientservice.service.ClientService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -17,56 +20,61 @@ import java.util.UUID;
 @Getter
 @RequiredArgsConstructor
 public class UserDetailsImplementation implements UserDetails {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private final UUID id;
-	private final String firstName;
-	private final String lastName;
-	private final String username;
-	private final String email;
+    private static ClientService clientService;
 
-	@JsonIgnore
-	private final String password;
+    private final UUID id;
+    private final String firstName;
+    private final String lastName;
+    private final String username;
+    private final String email;
 
-	private final Collection<? extends GrantedAuthority> authorities;
+    @JsonIgnore
+    private final String password;
 
-	public static UserDetailsImplementation build(Client client) {
-		List<GrantedAuthority> authorities = (List<GrantedAuthority>) client.getRole();
+    private final List<GrantedAuthority> authorities;
 
-		return new UserDetailsImplementation(
-			client.getId(),
-			client.getFirstName(),
-			client.getLastName(),
-			client.getUsername(),
-			client.getEmail(),
-			client.getPassword(),
-			authorities
-		);
-	}
+    public static UserDetailsImplementation build(Client client) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+//        var client1 = clientService.findClientByUsername(client.getUsername());
+        authorities.add(new SimpleGrantedAuthority(client.getRole().name()));
+//				().getRole().getName().name()));
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
-	}
+        return new UserDetailsImplementation(
+                client.getId(),
+                client.getFirstName(),
+                client.getLastName(),
+                client.getUsername(),
+                client.getEmail(),
+                client.getPassword(),
+                authorities
+        );
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
 

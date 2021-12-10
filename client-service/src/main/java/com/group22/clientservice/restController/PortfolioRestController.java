@@ -14,7 +14,6 @@ import java.util.UUID;
 @RequestMapping("/portfolios")
 @RequiredArgsConstructor
 public class PortfolioRestController {
-    @Autowired
     private final PortfolioService portfolioService;
 
 //    @PostMapping()
