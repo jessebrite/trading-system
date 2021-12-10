@@ -49,9 +49,14 @@ class Controller {
     @PostMapping("/subscribe2")
     @ResponseBody
     public String marketDataFromExchange2(@RequestBody List<RawMarketData> marketData) {
-        marketData.forEach(x -> x.setExchange("EXCHANGE2"));
-        template.convertAndSend(topic.getTopic(), gson.toJson(marketData));
-        return "MarketData Published!";
+      try {
+          marketData.forEach(x -> x.setExchange("EXCHANGE2"));
+          template.convertAndSend(topic.getTopic(), gson.toJson(marketData));
+          return "MarketData Published!";
+      } catch (Exception e) {
+          System.out.println(e.getMessage());
+          return "could not persis data";
+      }
     }
 
 

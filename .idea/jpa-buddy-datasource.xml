@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="8849c538-a932-44c8-80d1-39e090654f90" name="tlc_trading_engine" url="jdbc:postgresql://localhost/tlc_trading_engine_db" driverClass="org.postgresql.Driver" />
+      <data-source id="11094e12-9c71-453b-9cd7-8a50939178ae" name="trading-system" url="jdbc:postgresql://localhost/tlc_trading_engine_db" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>

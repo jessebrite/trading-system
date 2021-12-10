@@ -2,6 +2,11 @@ server:
   port: 8083
 
 spring:
+  flyway:
+    enabled: true
+    schemas:
+      - public
+
   datasource:
     username: postgres
     password: postgres
@@ -9,9 +14,8 @@ spring:
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
       hibernate:
-        ddl-auto: create-drop
+        ddl-auto: update
       open-in-view: false
       show-sql: false
       properties:
-        hibernate:
-          '[default_schema]': tlc_trading_engine_db
+        hibernate.default_schema: public
