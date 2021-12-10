@@ -1,55 +1,51 @@
 package com.group22.orderservice.controller;
 
-
-import com.group22.orderservice.model.Order;
+import com.group22.orderservice.model.ClientOrder;
 import com.group22.orderservice.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/orders")
 public class OrderController {
+    @Autowired
+    private OrderService orderService;
 
-    private final OrderService orderService;
-
-    public OrderController(OrderService orderService) {
-        this.orderService = orderService;
+    @PostMapping("/addOrder")
+    public ClientOrder addOrder(@RequestBody ClientOrder order){
+        return orderService.saveOrder(order);
     }
 
+    @PostMapping("{api_key}/addOrders")
+    public List<ClientOrder> saveOrders(@RequestBody List<ClientOrder> orders){
+        return orderService.saveOrders(orders);
+    }
 
-    @GetMapping
-    public List<Order> getOrders() {
+    @GetMapping("/orders")
+    public List<ClientOrder> findAllOrders(){
         return orderService.getOrders();
     }
 
-
-    @PostMapping
-    public void createOrder(@RequestBody Order order) {
-        orderService.addOrder(order);
+    @GetMapping("{api_key}/order/{id}")
+    public ClientOrder findOrderById(@PathVariable UUID id){
+        return orderService.getOrderById(id);
     }
 
-
-    @DeleteMapping(path = "/{orderId}")
-    public void deleteOrder(@PathVariable("orderId") UUID id) {
-        orderService.deleteOrder(id);
+    @GetMapping("/{ticker}")
+    public ClientOrder findOrderByProduct(@PathVariable String product){
+        return orderService.getOrderByProduct(product);
     }
 
-    @PutMapping(path = "/{orderId}")
-    public void updateOrder(@PathVariable("orderId") UUID id,
-                            @RequestParam(required = false) double price,
-                            @RequestParam(required = false) int quantity) {
-        orderService.updateOrder(id, price, quantity);
+    @PutMapping("/update")
+    public ClientOrder updateOrder(@RequestBody ClientOrder order){
+        return orderService.updateOrder(order);
     }
 
-
-    @GetMapping(path = "/{orderId}")
-    public Order traceOrder(@PathVariable("orderId") UUID id) {
-        return orderService.traceOrder(id);
+    @DeleteMapping("/delete/{id}")
+    public String deleteOrder(@PathVariable UUID id){
+        return orderService.deleteOrder(id);
     }
 
 }
-
-
