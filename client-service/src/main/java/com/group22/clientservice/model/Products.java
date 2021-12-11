@@ -16,7 +16,7 @@ public class Products {
 
     private String name;
     private String ticker;
-    private String quantity;
+    private Integer  quantity;
 
 //    @ManyToOne
 //    @JoinColumn(name = "portfolio_id")
