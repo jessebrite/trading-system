@@ -1,0 +1,97 @@
+<div class="col d-flex justify-content-center">
+  <div class="col-md-8">
+    <div class="card bg-light m-3">
+      <h5 class="card-header text-center">Login</h5>
+      <span class="text-center"
+        ><small
+          >New here? Register <a routerLink="/register">here</a></small
+        ></span
+      >
+      <div class="card-body">
+        <div
+          *ngIf="formError"
+          class="alert alert-warning alert-dismissible fade show text-center"
+          role="alert"
+        >
+          <!-- <strong>Warning!</strong> -->
+          {{formError}}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+          <div *ngIf="message !== ''"
+            class="alert alert-danger alert-dismissible fade show text-center"
+            role="alert"
+          >
+					{{message}}
+            <button
+              type="button"
+              class="close"
+              data-dismiss="alert"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        <form
+          #form="ngForm"
+          novalidate
+          (ngSubmit)="onSubmit(form)"
+          class="m-2"
+        >
+
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input
+              class="form-control"
+              #username="ngModel"
+              name="username"
+              id="username"
+              [(ngModel)]="client.username"
+              [ngClass]="{ 'is-invalid': submitted && username.invalid }"
+              [ngClass]="{ 'is-valid': submitted && username.valid }"
+              required
+            />
+            <span *ngIf="submitted && username.invalid" class="text-danger">
+              Please provide a username
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              class="form-control"
+              #password="ngModel"
+              name="password"
+              id="password"
+              type="password"
+              [(ngModel)]="client.password"
+              [ngClass]="{ 'is-invalid': submitted && password.invalid }"
+              [ngClass]="{ 'is-valid': submitted && password.valid }"
+              required
+            />
+            <div *ngIf="submitted && password.invalid" class="text-danger">
+              <span *ngIf="password.errors?.required"
+                >Please enter your password</span
+              >
+              <div class="text-center">
+                <span
+                  ><small><a routerLink="/#">Forgot password</a></small></span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-secondary m-1" type="submit">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

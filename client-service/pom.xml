@@ -19,8 +19,6 @@
     <dependencies>
         <!--    where service-specific dependencies would reside-->
         <!--    jwt for frontend-->
-
-        <!--    jwt for frontend-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
