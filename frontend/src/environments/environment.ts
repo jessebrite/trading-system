@@ -4,6 +4,10 @@
 
 export const environment = {
   apiBaseUrl: 'http://localhost:8081/api/v1',
+  // clientServiceBaseUrl: 'http://localhost:8081/api/v1',
+  orderServiceBaseUrl: 'http://localhost:8082/api/v1',
+  transactionServiceBaseUrl: 'http://localhost:8083/api/v1',
+  loggingServiceBaseUrl: 'http://localhost:8084/api/v1',
   user_key: 'auth-user',
   token_key: 'auth-token',
   production: false,
