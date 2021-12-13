@@ -10,6 +10,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { MustMatchDirective } from './_helpers/directives/must-match.directive';
+import { ContactComponent } from './contact/contact.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,10 +22,13 @@ import { MustMatchDirective } from './_helpers/directives/must-match.directive';
     LoginComponent,
     RegisterComponent,
     AboutComponent,
-    MustMatchDirective
+    MustMatchDirective,
+    ContactComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],

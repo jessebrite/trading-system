@@ -21,17 +21,19 @@ export class AuthenticationService {
   constructor(
     private httpClient: HttpClient,
     private processErrorService: ProcessErrorService
-  ) {}
+  ) { }
 
   public processAuthentication(client: Client, url?: string): Observable<Client> {
     // console.log('client: ', client);
     return this.httpClient
       .post<Client>(this.url + url, client, {
         headers: this.headers,
-      })
+      }, )
       .pipe(
         tap((results: Client) => {
           // captured results and do nothing. There're side effects
+          console.log("results", results)
+          // this.client = results;
           this.client = results;
         }),
         catchError(this.processErrorService.processError)

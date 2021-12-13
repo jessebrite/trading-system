@@ -39,12 +39,12 @@ public class AuthRestController {
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
                                               BindingResult result) {
-        if (result.hasErrors()) {
-            List<String> errors = result.getAllErrors().stream()
-                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                    .collect(Collectors.toList());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.toString());
-        }
+//        if (result.hasErrors()) {
+//            List<String> errors = result.getAllErrors().stream()
+//                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+//                    .collect(Collectors.toList());
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.toString());
+//        }
 
         try {
             Authentication authentication = authenticationManager.authenticate(

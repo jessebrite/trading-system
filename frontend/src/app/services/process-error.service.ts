@@ -15,7 +15,9 @@ export class ProcessErrorService {
       // server-side
     } else {
       // message = `Error Code: ${error.status}\nMessage: ${error.error.message}`;
-      message = error.error.message;
+      // console.log(`the error message: ${error.message}`);
+      console.log("error: ", error);
+      message = error.message;
     }
     // console.log(message);
     return throwError(message);
