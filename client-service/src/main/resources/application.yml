@@ -30,4 +30,6 @@ abj:
   app:
     jwtSecret: abjSecretsdakvjsdha;vasdkvbdsavdasf56858bbd6fsbvvfbfdksodbvlvbdgvvb5dfdavbadKey
     jwtExpirationMs: 86400
-    order-url: "http://localhost:8082/api/v1"
+    order-url: "http://localhost:8080"
+
+
