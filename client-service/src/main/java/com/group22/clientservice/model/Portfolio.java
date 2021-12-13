@@ -5,11 +5,9 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,10 +18,6 @@ public class Portfolio {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    // Do we need the name of the portfolio????
-    @Column(name = "name")
-    private String name;
-
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt;
@@ -31,12 +25,12 @@ public class Portfolio {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Products> products;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public Portfolio() {
         status = Status.OPENED;
         createdAt = ZonedDateTime.now(ZoneId.of("GMT"));
-        products = new ArrayList<>();
     }
 }

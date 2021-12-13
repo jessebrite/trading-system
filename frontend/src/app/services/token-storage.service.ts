@@ -34,7 +34,7 @@ export class TokenStorageService {
 
   public isLoggedIn(): boolean {
     const token: string = this.getToken();
-    return token ? true : false;
+    return !!token;
   }
 
   public getCurrentUser(): any {

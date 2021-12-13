@@ -1,21 +1,16 @@
 package com.group22.clientservice.restController;
 
-import com.group22.clientservice.dto.CustomUserDetail;
 import com.group22.clientservice.model.Client;
 import com.group22.clientservice.model.enums.Role;
 import com.group22.clientservice.payload.request.LoginRequest;
 import com.group22.clientservice.payload.request.RegisterRequest;
-import com.group22.clientservice.payload.response.JwtResponse;
-import com.group22.clientservice.payload.response.MessageResponse;
 import com.group22.clientservice.service.ClientService;
-import com.group22.clientservice.service.impl.UserDetailsImplementation;
 import com.group22.clientservice.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -34,7 +29,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/v1/auth")
 public class AuthRestController {
     private final AuthenticationManager authenticationManager;
     private final ClientService clientService;
@@ -43,13 +38,13 @@ public class AuthRestController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest,
-                                   BindingResult result) {
-        if (result.hasErrors()) {
-            List<String> errors = result.getAllErrors().stream()
-                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                    .collect(Collectors.toList());
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.toString());
-        }
+                                              BindingResult result) {
+//        if (result.hasErrors()) {
+//            List<String> errors = result.getAllErrors().stream()
+//                    .map(DefaultMessageSourceResolvable::getDefaultMessage)
+//                    .collect(Collectors.toList());
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, errors.toString());
+//        }
 
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -64,10 +59,8 @@ public class AuthRestController {
             return new ResponseEntity<>(jwt, HttpStatus.OK);
         } catch (AuthenticationException e) {
             SecurityContextHolder.getContext().setAuthentication(null);
-            //return new MessageResponse("Wrong username/password combination");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong username/password combination");
         } catch (Exception e) {
-            //return new MessageResponse("Wrong username/password combination");
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Wrong username/password combination");
         }
     }

@@ -1,7 +1,5 @@
 server:
   port: 8081
-  servlet:
-    context-path: /api/v1
   error:
     include-stacktrace: never
     include-message: always
@@ -20,7 +18,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: update
+#      ddl-auto: update
     open-in-view: false
     show-sql: false
     properties:
@@ -30,6 +28,6 @@ spring:
 
 abj:
   app:
-    jwtSecret: abjSecretKey
-    jwtExpirationMs: 86400000
+    jwtSecret: abjSecretsdakvjsdha;vasdkvbdsavdasf56858bbd6fsbvvfbfdksodbvlvbdgvvb5dfdavbadKey
+    jwtExpirationMs: 86400
     order-url: "http://localhost:8082/api/v1"

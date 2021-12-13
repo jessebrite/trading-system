@@ -8,12 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="transaction-service" />
-        <module name="client-service" />
         <module name="order-service" />
+        <module name="logging-service" />
+        <module name="client-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="client-service" target="11" />
+      <module name="logging-service" target="11" />
       <module name="order-service" target="11" />
       <module name="trading-system" target="11" />
       <module name="transaction-service" target="11" />
@@ -22,6 +24,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="client-service" options="-parameters" />
+      <module name="logging-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="trading-system" options="-parameters" />
       <module name="transaction-service" options="-parameters" />
