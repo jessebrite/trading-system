@@ -9,14 +9,15 @@ import java.util.UUID;
 @Table(name = "products")
 @Entity
 @Data
-public class Product {
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     private String name;
     private String ticker;
-    private String quantity;
+    private Integer  quantity;
+
 //    @ManyToOne
 //    @JoinColumn(name = "portfolio_id")
 //    private Portfolio portfolio;
