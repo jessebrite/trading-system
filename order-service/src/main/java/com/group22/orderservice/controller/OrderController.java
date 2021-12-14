@@ -1,11 +1,9 @@
 package com.group22.orderservice.controller;
-
 import com.group22.orderservice.model.ClientOrder;
 import com.group22.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
 
 @RestController
 public class OrderController {
@@ -33,6 +31,13 @@ public class OrderController {
     public ClientOrder findOrderByProduct(@PathVariable String product){
         return orderService.getOrderByProduct(product);
     }
+
+//    @PutMapping("/update")
+//    public ClientOrder updateOrder(@RequestBody ClientOrder order){
+//        return orderService.updateOrder(order);
+//    }
+
+
 
 
 }
