@@ -26,7 +26,7 @@
       <module name="client-service" options="-parameters" />
       <module name="logging-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
-      <module name="trading-system" options="" />
+      <module name="trading-system" options="-parameters" />
       <module name="transaction-service" options="-parameters" />
     </option>
   </component>
