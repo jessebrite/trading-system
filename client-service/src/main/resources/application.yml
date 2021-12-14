@@ -8,21 +8,29 @@ spring:
     enabled: true
     schemas:
       - public
-#      - tlc_trading_engine_db
     installed-by: Group 22
+    baselineOnMigrate: true
   datasource:
     username: postgres
     password: postgres
     url: jdbc:postgresql://localhost:5432/tlc_trading_engine_db
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    properties.hibernate.format_sql: true
     hibernate:
-#      ddl-auto: update
+    #      ddl-auto: update
     open-in-view: false
     show-sql: false
     properties:
       hibernate:
-#        '[default_schema]': tlc_trading_engine_db
+        '[default_schema]': public
+      format_sql: true
+
+
+
+abj:
+  app:
+    jwtSecret: abjSecretsdakvjsdha;vasdkvbdsavdasf56858bbd6fsbvvfbfdksodbvlvbdgvvb5dfdavbadKey
+    jwtExpirationMs: 86400
+    order-url: "http://localhost:8080"
 
 

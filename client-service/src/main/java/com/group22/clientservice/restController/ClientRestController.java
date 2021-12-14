@@ -16,11 +16,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RestController
 public class ClientRestController {
-
     public final ClientService clientService;
 
     /**
-     * GET: /api/v1/clients
+     * @return
+     */
+    @GetMapping("/clients/{id}/orders")
+    public ResponseEntity<?> getAllOrders(@PathVariable UUID id) {
+        return new ResponseEntity<>(clientService.getClass(), HttpStatus.OK);
+    }
+
+    /**
+     * GET: /api/v1/clients/{id}/orders
      *
      * @return
      */
@@ -32,6 +39,8 @@ public class ClientRestController {
             if (allClients.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
+
+            allClients.forEach(client -> client.setPassword(""));
             return new ResponseEntity<>(allClients, HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,7 +76,7 @@ public class ClientRestController {
      */
     @PostMapping
     public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) {
-            return clientService.createNewClient(client);
+        return clientService.createNewClient(client);
     }
 
     /**
@@ -82,6 +91,9 @@ public class ClientRestController {
         return clientService.update(id, client);
     }
 
+    @PutMapping("/{id}/portfolios")
+
+
     /**
      * DELETE: /api/v1/clients/{id}
      *
@@ -95,21 +107,6 @@ public class ClientRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception exception) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    /**
-     * DELETE: /api/v1/clients
-     *
-     * @return
-     */
-    @DeleteMapping
-    public ResponseEntity<List<Client>> deleteAllClients() {
-        try {
-            clientService.deleteAllClients();
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

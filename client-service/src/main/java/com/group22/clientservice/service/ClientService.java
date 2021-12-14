@@ -8,16 +8,21 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface ClientService {
-    ResponseEntity<Client> createNewClient(Client client);
+	ResponseEntity<?> fetchOrder();
 
-    ResponseEntity<Client> update(UUID id, Client client);
+	ResponseEntity<Client> createNewClient(Client client);
 
-    Optional<Client> findClientById(UUID id);
+	ResponseEntity<Client> update(UUID id, Client client);
 
-    List<Client> findAllClients();
+	Optional<Client> findClientById(UUID id);
 
-    void deleteClientById(UUID id);
+	Optional<Client> findClientByUsername(String username);
 
-    void deleteAllClients();
+	List<Client> findAllClients();
 
+	Boolean existsByUsername(String username);
+
+	Boolean existsByEmail(String email);
+
+	void deleteClientById(UUID id);
 }

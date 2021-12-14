@@ -27,24 +27,24 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="2d6d4875-1cee-4c1f-9be8-285f523ff137">
-      <console name="Connection" type="STANDARD" schema="group15" session="Main" />
+    <connection id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a">
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="2d6d4875-1cee-4c1f-9be8-285f523ff137" />
+    <connection id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a" dataset="public.clients" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
-  </component>
-  <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/client-service/src/main/resources/db/migration/V1__initial_migration.sql" connection-id="d2a19884-66fe-4edb-823b-ff3f4079ce37" session-id="MAIN" current-schema="tlc_trading_engine_db" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -61,28 +61,31 @@
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ParserDiagnosticsManager">
+    <diagnostics-history />
+  </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
     <recently-used-interfaces />
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="2d6d4875-1cee-4c1f-9be8-285f523ff137" active="true">
+      <connection id="e5bb5e2d-2987-46b2-93b5-5916a6fd855a" active="true">
         <database>
           <name value="Connection" />
-          <description value="" />
+          <description value="trading-engine" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="14.0" />
+          <database-version value="14.1" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="5432" />
-          <database value="postgres" />
+          <database value="tlc_trading_engine_db" />
           <type value="USER_PASSWORD" />
           <user value="postgres" />
-          <deprecated-pwd value="cG9zdGdyZXM=" />
+          <deprecated-pwd value="cGFzc3dvcmQ=" />
         </database>
         <properties>
           <auto-commit value="false" />

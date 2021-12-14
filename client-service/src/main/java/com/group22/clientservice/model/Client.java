@@ -1,11 +1,14 @@
 package com.group22.clientservice.model;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.group22.clientservice.model.enums.Role;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
@@ -15,7 +18,9 @@ import java.util.UUID;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email"),
         })
-@Data
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,17 +50,17 @@ public class Client {
     @Size(max = 120)
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
+//    @NotNull
     private Account account;
 
-    @OneToOne (fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "portfolio_ID", referencedColumnName = "id")
+//    @NotNull
     private Portfolio portfolio;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @Enumerated(EnumType.STRING)
     private Role role;
 
 //    @OneToMany(fetch = FetchType.LAZY)
@@ -65,4 +70,17 @@ public class Client {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt;
+
+    public Client(String firstName, String lastName, String username, String email,
+                  String password, Account account, Portfolio portfolio) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.account = account;
+        this.portfolio = portfolio;
+        this.createdAt = ZonedDateTime.now(ZoneId.of("GMT"));
+    }
+
 }
