@@ -22,4 +22,5 @@ public class ClientOrder {
     private double price;
     //    @Enumerated(EnumType.STRING)
     private Side side;
+    private String orderId;
 }
