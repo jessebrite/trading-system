@@ -20,7 +20,7 @@ public class ClientOrder {
     private String product;
     private int quantity;
     private double price;
-    //    @Enumerated(EnumType.STRING)
+    //   @Enumerated(EnumType.STRING)
     private Side side;
     private String orderId;
 }

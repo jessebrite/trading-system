@@ -4,9 +4,8 @@ import com.group22.orderservice.model.ClientOrder;
 import com.group22.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 public class OrderController {

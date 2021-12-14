@@ -1,4 +1,5 @@
 package com.group22.orderservice.service;
+
 import com.group22.orderservice.model.ClientOrder;
 import com.group22.orderservice.model.MarketDataResponse;
 import com.group22.orderservice.repository.OrderRepository;
@@ -42,18 +43,18 @@ public class OrderService {
                 case BUY:
                     MarketDataResponse marketDataResponse1 = Arrays.stream(results).min(Comparator.comparing(MarketDataResponse::getBidPrice)).get();
                     String myExchange = marketDataResponse1.getExchange();
-                    if ((order.getPrice() <= marketDataResponse1.getBidPrice() && order.getQuantity() <= marketDataResponse1.getBuyLimit()) ){
-                        if(myExchange.equals("EXCHANGE1")){
+                    if ((order.getPrice() <= marketDataResponse1.getBidPrice() && order.getQuantity() <= marketDataResponse1.getBuyLimit())) {
+                        if (myExchange.equals("EXCHANGE1")) {
                             String buyResultFromExchange1 = restTemplate.postForObject(exchange1 + apikey + "/order", order, String.class);
                             order.setOrderId(buyResultFromExchange1);
                             log.info("order was successful on exchange one!");
-                        }else {
+                        } else {
                             String buyResultFromExchange2 = restTemplate.postForObject(exchange2 + apikey + "/order", order, String.class);
                             order.setOrderId(buyResultFromExchange2);
                             log.info("order was successful on exchange two !");
                         }
 
-                    }else{
+                    } else {
                         System.out.println("nope!");
                     }
                     break;
@@ -61,19 +62,19 @@ public class OrderService {
                 case SELL:
                     MarketDataResponse marketDataResponse2 = Arrays.stream(results).max(Comparator.comparing(MarketDataResponse::getAskPrice)).get();
                     String new_exchange = marketDataResponse2.getExchange();
-                    if(order.getPrice() <= marketDataResponse2.getAskPrice() && order.getQuantity() <= marketDataResponse2.getSellLimit()){
-                        if(new_exchange.equals("EXCHANGE1")){
-                            String sellResultFromExchange1 =  restTemplate.postForObject(exchange1 + apikey + "/order", order, String.class);
+                    if (order.getPrice() <= marketDataResponse2.getAskPrice() && order.getQuantity() <= marketDataResponse2.getSellLimit()) {
+                        if (new_exchange.equals("EXCHANGE1")) {
+                            String sellResultFromExchange1 = restTemplate.postForObject(exchange1 + apikey + "/order", order, String.class);
                             order.setOrderId(sellResultFromExchange1);
                             System.out.println("order was successful on exchange one!!!");
-                        }else{
+                        } else {
                             String buyResultFromExchange2 = restTemplate.postForObject(exchange2 + apikey + "/order", order, String.class);
                             order.setOrderId(buyResultFromExchange2);
                             System.out.println("order was successful on exchange two !!!!!!");
                         }
 
 
-                    }else {
+                    } else {
                         System.out.println("you asked price is greater than asked price");
                     }
 
@@ -83,7 +84,6 @@ public class OrderService {
         return orderRepository.save(order);
 
     }
-
 
 
     public List<ClientOrder> getOrders() {
@@ -97,7 +97,6 @@ public class OrderService {
     public ClientOrder getOrderByProduct(String product) {
         return orderRepository.findByProduct(product);
     }
-
 
 
 //    public ClientOrder updateOrder(ClientOrder order){

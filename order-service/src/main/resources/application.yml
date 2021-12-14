@@ -16,4 +16,10 @@ spring:
       show-sql: false
       properties:
         hibernate:
-          '[default_schema]': tlc_trading_engine_db
+#          '[default_schema]': public
+#          '[default_schema]': tlc_trading_engine_db
+
+exchange1: https://exchange.matraining.com/
+exchange2: https://exchange2.matraining.com/
+api_key: d4b41696-8379-4e9d-a4c0-3c4ad1d37a5c
+uri: https://3b1a-102-22-11-130.ngrok.io/api/v1/marketdataservice/prices/
