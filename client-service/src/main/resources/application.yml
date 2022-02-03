@@ -1,9 +1,7 @@
 server:
   port: 8081
-  error:
-    include-stacktrace: never
-    include-message: always
-    include-binding-errors: always
+  servlet:
+    context-path: /api/v1
 
 spring:
   flyway:
